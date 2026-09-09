@@ -1,0 +1,16 @@
+{
+  "name": "image-converter-cli",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "convert": "bun ./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/node": "^22.20.2"
+  },
+  "peerDependencies": {
+    "typescript": "^7"
+  }
+}
