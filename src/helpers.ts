@@ -13,7 +13,7 @@ export function isImage({ name }: Dirent<string>) {
   );
 }
 
-export function isFIle(dirent: Dirent<string>) {
+export function isFile(dirent: Dirent<string>) {
   return dirent.isFile();
 }
 

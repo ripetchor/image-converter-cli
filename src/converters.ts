@@ -1,7 +1,7 @@
 import { file } from 'bun';
 import { readdir } from 'node:fs/promises';
 import { basename, extname, resolve } from 'node:path';
-import { isFIle, isImage } from './helpers';
+import { isFile, isImage } from './helpers';
 import type { ConvertMultipleOptions, ConvertOptions } from './types';
 
 async function convert(options: ConvertOptions) {
@@ -46,7 +46,7 @@ export async function convertImages({
 }: ConvertMultipleOptions) {
   const dir = await readdir(sourceDir, { withFileTypes: true });
 
-  const files = dir.filter(isFIle);
+  const files = dir.filter(isFile);
 
   const images = files.filter(isImage);
 
