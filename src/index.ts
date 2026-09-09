@@ -7,7 +7,7 @@ const options: ParseArgsOptionsConfig = {
   sourceDir: {
     type: 'string',
   },
-  destinationDir: {
+  outputDir: {
     type: 'string',
     default: '',
   },
@@ -39,7 +39,7 @@ assertImageFormat(values.format);
 
 if (
   typeof values.sourceDir !== 'string' ||
-  typeof values.destinationDir !== 'string' ||
+  typeof values.outputDir !== 'string' ||
   typeof values.quality !== 'string' ||
   typeof values.lossless !== 'boolean' ||
   typeof values.progressive !== 'boolean'
@@ -49,7 +49,7 @@ if (
 
 convertImages({
   sourceDir: values.sourceDir,
-  destinationDir: values.destinationDir,
+  outputDir: values.outputDir,
   format: values.format,
   quality: parseInt(values.quality),
   lossless: values.lossless,

@@ -8,7 +8,7 @@ async function convert(options: ConvertOptions) {
   const {
     name,
     parentPath,
-    destinationDir,
+    outputDir,
     format = 'webp',
     quality = 80,
     lossless = false,
@@ -29,7 +29,7 @@ async function convert(options: ConvertOptions) {
 
   const fileName = basename(name, extname(name));
 
-  const destination = resolve(destinationDir || parentPath, fileName + '.' + format);
+  const destination = resolve(outputDir || parentPath, fileName + '.' + format);
 
   await result.write(destination);
 
@@ -38,7 +38,7 @@ async function convert(options: ConvertOptions) {
 
 export async function convertImages({
   sourceDir,
-  destinationDir,
+  outputDir,
   format,
   quality,
   lossless,
@@ -52,7 +52,15 @@ export async function convertImages({
 
   await Promise.all(
     images.map(({ name, parentPath }) => {
-      convert({ name, parentPath, destinationDir, format, quality, lossless, progressive });
+      convert({
+        name,
+        parentPath,
+        outputDir,
+        format,
+        quality,
+        lossless,
+        progressive,
+      });
     }),
   );
 }

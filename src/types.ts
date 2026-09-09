@@ -10,10 +10,10 @@ export interface Options {
 export interface ConvertOptions extends Options {
   name: string;
   parentPath: string;
-  destinationDir?: string;
+  outputDir?: string;
 }
 
 export interface ConvertMultipleOptions extends Options {
   sourceDir: string;
-  destinationDir?: string;
+  outputDir?: string;
 }
