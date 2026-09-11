@@ -2,19 +2,10 @@ import type { Dirent } from 'node:fs';
 import { extname } from 'node:path';
 import type { Format } from './types';
 
-export function isImage({ name }: Dirent<string>) {
-  return (
-    extname(name) === '.jpeg' ||
-    extname(name) === '.jpg' ||
-    extname(name) === '.png' ||
-    extname(name) === '.webp' ||
-    extname(name) === '.heic' ||
-    extname(name) === '.avif'
-  );
-}
-
-export function isFile(dirent: Dirent<string>) {
-  return dirent.isFile();
+export function isImage(imageFormats: Set<string>) {
+  return function (dirent: Dirent<string>) {
+    return dirent.isFile() && imageFormats.has(extname(dirent.name));
+  };
 }
 
 export function isFormat(value: unknown): value is Format {

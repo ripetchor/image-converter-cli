@@ -27,6 +27,10 @@ const options: ParseArgsOptionsConfig = {
     type: 'boolean',
     default: false,
   },
+  recursive: {
+    type: 'boolean',
+    default: false,
+  },
 };
 
 const { values } = parseArgs({ args: argv.slice(2), options });
@@ -42,7 +46,8 @@ if (
   typeof values.outputDir !== 'string' ||
   typeof values.quality !== 'string' ||
   typeof values.lossless !== 'boolean' ||
-  typeof values.progressive !== 'boolean'
+  typeof values.progressive !== 'boolean' ||
+  typeof values.recursive !== 'boolean'
 ) {
   throw new Error('Invalid argument type');
 }
@@ -54,4 +59,5 @@ convertImages({
   quality: parseInt(values.quality),
   lossless: values.lossless,
   progressive: values.progressive,
+  recursive: values.recursive,
 }).catch(console.error);

@@ -13,7 +13,8 @@ export interface ConvertOptions extends Options {
   outputDir?: string;
 }
 
-export interface ConvertMultipleOptions extends Options {
+export interface ConvertImagesOptions extends Options {
   sourceDir: string;
   outputDir?: string;
+  recursive?: boolean;
 }
