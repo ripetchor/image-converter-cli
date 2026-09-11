@@ -1,17 +1,17 @@
-import { type Config } from "prettier";
+import { type Config } from 'prettier';
 
 const config: Config = {
-  trailingComma: "es5",
+  trailingComma: 'es5',
   printWidth: 100,
   tabWidth: 2,
   useTabs: false,
   semi: true,
-  quoteProps: "consistent",
+  quoteProps: 'consistent',
   singleQuote: true,
   jsxSingleQuote: true,
-  arrowParens: "always",
+  arrowParens: 'always',
   bracketSpacing: true,
-  objectWrap: "collapse",
+  objectWrap: 'preserve',
   bracketSameLine: true,
 };
 
