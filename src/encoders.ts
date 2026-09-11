@@ -1,6 +1,6 @@
-import type { Image } from "bun";
+import type { Image } from 'bun';
 
-import type { EncodeOptions, ImageEncoder } from "./types";
+import type { EncodeOptions, ImageEncoder } from './types';
 
 export class AvifEncoder implements ImageEncoder {
   public encode(image: Image, options: EncodeOptions): Image {
@@ -16,10 +16,7 @@ export class HeicEncoder implements ImageEncoder {
 
 export class JpegEncoder implements ImageEncoder {
   public encode(image: Image, options: EncodeOptions): Image {
-    return image.jpeg({
-      progressive: options.progressive,
-      quality: options.quality,
-    });
+    return image.jpeg({ progressive: options.progressive, quality: options.quality });
   }
 }
 

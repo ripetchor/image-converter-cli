@@ -1,16 +1,12 @@
-import type { Dirent } from "node:fs";
+import type { Dirent } from 'node:fs';
 
-import { readdir } from "node:fs/promises";
-import { resolve } from "node:path";
+import { readdir } from 'node:fs/promises';
+import { resolve } from 'node:path';
 
-import type { ImageConverter } from "./image-converter";
-import type {
-  AppConvertOptions,
-  ExecuteOptions,
-  OnConvertedCallback,
-} from "./types";
+import type { ImageConverter } from './image-converter';
+import type { AppConvertOptions, ExecuteOptions, OnConvertedCallback } from './types';
 
-import { isImage, resolveImageDestination } from "./helpers";
+import { isImage, resolveImageDestination } from './helpers';
 
 export class App {
   private readonly converter: ImageConverter;
@@ -21,7 +17,7 @@ export class App {
 
   public async execute(
     getOptions: () => ExecuteOptions,
-    onConverted?: OnConvertedCallback,
+    onConverted?: OnConvertedCallback
   ): Promise<void> {
     const options = getOptions();
 
@@ -34,36 +30,19 @@ export class App {
 
     await Promise.all(
       images.map((dirent) => {
-        return this.convert(
-          this.createConvertOptions(dirent, options),
-          onConverted,
-        );
-      }),
+        return this.convert(this.createConvertOptions(dirent, options), onConverted);
+      })
     );
   }
 
   private async convert(
     options: AppConvertOptions,
-    onConverted?: OnConvertedCallback,
+    onConverted?: OnConvertedCallback
   ): Promise<void> {
-    const {
-      format,
-      lossless,
-      name,
-      outputDir,
-      parentPath,
-      progressive,
-      quality,
-      sourceDir,
-    } = options;
+    const { format, lossless, name, outputDir, parentPath, progressive, quality, sourceDir } =
+      options;
 
-    const destination = resolveImageDestination({
-      format,
-      name,
-      outputDir,
-      parentPath,
-      sourceDir,
-    });
+    const destination = resolveImageDestination({ format, name, outputDir, parentPath, sourceDir });
 
     const converted = this.converter.convert({
       format,
@@ -78,10 +57,7 @@ export class App {
     onConverted?.({ bytes, destination });
   }
 
-  private createConvertOptions(
-    dirent: Dirent,
-    options: ExecuteOptions,
-  ): AppConvertOptions {
+  private createConvertOptions(dirent: Dirent, options: ExecuteOptions): AppConvertOptions {
     return {
       format: options.format,
       lossless: options.lossless,

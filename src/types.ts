@@ -1,6 +1,6 @@
-import type { Image } from "bun";
+import type { Image } from 'bun';
 
-import type { ENCODERS } from "./constants";
+import type { ENCODERS } from './constants';
 
 export interface AppConvertOptions extends EncodeOptions {
   format: ImageFormat;
@@ -33,9 +33,6 @@ export interface ImageEncoder {
   encode(image: Image, options: EncodeOptions): Image;
 }
 
-export type ImageFormat = "avif" | "heic" | "jpeg" | "png" | "webp";
+export type ImageFormat = 'avif' | 'heic' | 'jpeg' | 'png' | 'webp';
 
-export type OnConvertedCallback = (params: {
-  bytes: number;
-  destination: string;
-}) => void;
+export type OnConvertedCallback = (params: { bytes: number; destination: string }) => void;

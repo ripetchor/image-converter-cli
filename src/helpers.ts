@@ -1,16 +1,14 @@
-import type { Dirent } from "node:fs";
+import type { Dirent } from 'node:fs';
 
-import { basename, extname, relative, resolve } from "node:path";
+import { basename, extname, relative, resolve } from 'node:path';
 
-import type { ImageFormat } from "./types";
+import type { ImageFormat } from './types';
 
-import { IMAGE_FORMATS } from "./constants";
+import { IMAGE_FORMATS } from './constants';
 
-export function assertImageFormat(
-  value: unknown,
-): asserts value is ImageFormat {
-  if (typeof value !== "string") {
-    throw new TypeError("--format must be a string");
+export function assertImageFormat(value: unknown): asserts value is ImageFormat {
+  if (typeof value !== 'string') {
+    throw new TypeError('--format must be a string');
   }
 
   if (!isImageFormat(value)) {
@@ -27,11 +25,7 @@ export function isImage(dirent: Dirent): boolean {
 
 export function isImageFormat(value: unknown): value is ImageFormat {
   return (
-    value === "webp" ||
-    value === "jpeg" ||
-    value === "png" ||
-    value === "heic" ||
-    value === "avif"
+    value === 'webp' || value === 'jpeg' || value === 'png' || value === 'heic' || value === 'avif'
   );
 }
 
