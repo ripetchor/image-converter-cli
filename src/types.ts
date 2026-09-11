@@ -1,7 +1,7 @@
-export type Format = 'jpeg' | 'png' | 'webp' | 'heic' | 'avif';
+export type ImageFormat = 'jpeg' | 'png' | 'webp' | 'heic' | 'avif';
 
 export interface Options {
-  format?: Format;
+  format?: ImageFormat;
   quality?: number;
   lossless?: boolean;
   progressive?: boolean;
