@@ -1,20 +1,37 @@
-export type ImageFormat = 'jpeg' | 'png' | 'webp' | 'heic' | 'avif';
+import type { Image } from 'bun';
+import type { ENCODERS } from './constants';
 
-export interface Options {
-  format?: ImageFormat;
-  quality?: number;
-  lossless?: boolean;
-  progressive?: boolean;
+export type ImageFormat = 'webp' | 'jpeg' | 'png' | 'heic' | 'avif';
+
+export interface EncodeOptions {
+  quality: number;
+  lossless: boolean;
+  progressive: boolean;
 }
 
-export interface ConvertOptions extends Options {
-  name: string;
-  parentPath: string;
-  outputDir?: string;
+export interface ConvertOptions extends EncodeOptions {
+  path: string;
+  format: ImageFormat;
 }
 
-export interface ConvertImagesOptions extends Options {
+export interface ExecuteOptions extends EncodeOptions {
   sourceDir: string;
   outputDir?: string;
-  recursive?: boolean;
+  format: ImageFormat;
+  recursive: boolean;
 }
+export interface AppConvertOptions extends EncodeOptions {
+  sourceDir: string;
+  outputDir?: string;
+  format: ImageFormat;
+  name: string;
+  parentPath: string;
+}
+
+export interface ImageEncoder {
+  encode(image: Image, options: EncodeOptions): Image;
+}
+
+export type Encoders = typeof ENCODERS;
+
+export type OnConvertedCallback = (params: { destination: string; bytes: number }) => void;
