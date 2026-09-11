@@ -61,7 +61,7 @@ export class App {
     onConverted?.({ destination, bytes });
   }
 
-  private createConvertOptions(dirent: Dirent<string>, options: ExecuteOptions): AppConvertOptions {
+  private createConvertOptions(dirent: Dirent, options: ExecuteOptions): AppConvertOptions {
     return {
       name: dirent.name,
       parentPath: dirent.parentPath,

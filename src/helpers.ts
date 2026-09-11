@@ -4,7 +4,7 @@ import { basename, extname, relative, resolve } from 'node:path';
 import { IMAGE_FORMATS } from './constants';
 import type { ImageFormat } from './types';
 
-export function isImage(dirent: Dirent<string>): boolean {
+export function isImage(dirent: Dirent): boolean {
   return dirent.isFile() && IMAGE_FORMATS.has(extname(dirent.name));
 }
 
