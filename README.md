@@ -16,18 +16,21 @@ cd image-converter-cli
 bun install
 ```
 
+## Arguments
+
+- `--sourceDir` (required)
+- `--outputDir` (optional, default: `--sourceDir`)
+- `--recursive` (optional, default: `false`)
+- `--format` (optional, default: `webp`)
+- `--quality` (optional, default: `80`)
+- `--lossless` (optional, default: `false`, for `webp`)
+- `--progressive` (optional, default: `false`, for `jpeg`)
+
 ## Usage
 
 ```bash
 bun run convert --sourceDir <source-directory-path>
 ```
-
-Defaults:
-
-- Format: `webp`
-- Quality: `80`
-- Lossless: `false`
-- Progressive: `false`
 
 ### Examples
 

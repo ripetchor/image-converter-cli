@@ -1,34 +1,25 @@
 import type { Dirent } from 'node:fs';
 import { extname } from 'node:path';
-import type { Format } from './types';
+import type { ImageFormat } from './types';
 
-export function isImage({ name }: Dirent<string>) {
-  return (
-    extname(name) === '.jpeg' ||
-    extname(name) === '.jpg' ||
-    extname(name) === '.png' ||
-    extname(name) === '.webp' ||
-    extname(name) === '.heic' ||
-    extname(name) === '.avif'
-  );
+export function isImage(imageFormats: Set<string>) {
+  return function (dirent: Dirent<string>) {
+    return dirent.isFile() && imageFormats.has(extname(dirent.name));
+  };
 }
 
-export function isFile(dirent: Dirent<string>) {
-  return dirent.isFile();
-}
-
-export function isFormat(value: unknown): value is Format {
+export function isImageFormat(value: unknown): value is ImageFormat {
   return (
     value === 'webp' || value === 'jpeg' || value === 'png' || value === 'heic' || value === 'avif'
   );
 }
 
-export function assertImageFormat(value: unknown): asserts value is Format {
+export function assertImageFormat(value: unknown): asserts value is ImageFormat {
   if (typeof value !== 'string') {
     throw new TypeError('--format must be a string');
   }
 
-  if (!isFormat(value)) {
+  if (!isImageFormat(value)) {
     throw new Error(`
       Unsupported format: ${value}
       Supported formats: jpeg, png, webp, heic, avif
