@@ -1,18 +1,10 @@
 import type { Dirent } from 'node:fs';
+
 import { basename, extname, relative, resolve } from 'node:path';
 
-import { IMAGE_FORMATS } from './constants';
 import type { ImageFormat } from './types';
 
-export function isImage(dirent: Dirent<string>): boolean {
-  return dirent.isFile() && IMAGE_FORMATS.has(extname(dirent.name));
-}
-
-export function isImageFormat(value: unknown): value is ImageFormat {
-  return (
-    value === 'webp' || value === 'jpeg' || value === 'png' || value === 'heic' || value === 'avif'
-  );
-}
+import { IMAGE_FORMATS } from './constants';
 
 export function assertImageFormat(value: unknown): asserts value is ImageFormat {
   if (typeof value !== 'string') {
@@ -27,14 +19,24 @@ export function assertImageFormat(value: unknown): asserts value is ImageFormat 
   }
 }
 
+export function isImage(dirent: Dirent): boolean {
+  return dirent.isFile() && IMAGE_FORMATS.has(extname(dirent.name));
+}
+
+export function isImageFormat(value: unknown): value is ImageFormat {
+  return (
+    value === 'webp' || value === 'jpeg' || value === 'png' || value === 'heic' || value === 'avif'
+  );
+}
+
 export function resolveImageDestination(options: {
-  sourceDir: string;
+  format: string;
+  name: string;
   outputDir?: string;
   parentPath: string;
-  name: string;
-  format: string;
+  sourceDir: string;
 }): string {
-  const { sourceDir, outputDir, parentPath, name, format } = options;
+  const { format, name, outputDir, parentPath, sourceDir } = options;
 
   const destinationDir = outputDir
     ? resolve(outputDir, relative(sourceDir, parentPath))

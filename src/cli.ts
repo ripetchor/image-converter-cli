@@ -1,37 +1,18 @@
 import { argv } from 'bun';
 import { parseArgs, type ParseArgsOptionsConfig } from 'node:util';
 
-import { assertImageFormat } from './helpers';
 import type { ExecuteOptions } from './types';
 
+import { assertImageFormat } from './helpers';
+
 const options: ParseArgsOptionsConfig = {
-  sourceDir: {
-    type: 'string',
-  },
-  outputDir: {
-    type: 'string',
-    default: '',
-  },
-  format: {
-    type: 'string',
-    default: 'webp',
-  },
-  quality: {
-    type: 'string',
-    default: '80',
-  },
-  lossless: {
-    type: 'boolean',
-    default: false,
-  },
-  progressive: {
-    type: 'boolean',
-    default: false,
-  },
-  recursive: {
-    type: 'boolean',
-    default: false,
-  },
+  format: { default: 'webp', type: 'string' },
+  lossless: { default: false, type: 'boolean' },
+  outputDir: { default: '', type: 'string' },
+  progressive: { default: false, type: 'boolean' },
+  quality: { default: '80', type: 'string' },
+  recursive: { default: false, type: 'boolean' },
+  sourceDir: { type: 'string' },
 };
 
 export function parseCliOptions(): ExecuteOptions {
@@ -55,12 +36,12 @@ export function parseCliOptions(): ExecuteOptions {
   }
 
   return {
-    sourceDir: values.sourceDir,
-    outputDir: values.outputDir,
     format: values.format,
-    quality: Number.parseInt(values.quality),
     lossless: values.lossless,
+    outputDir: values.outputDir,
     progressive: values.progressive,
+    quality: Number.parseInt(values.quality),
     recursive: values.recursive,
+    sourceDir: values.sourceDir,
   };
 }
