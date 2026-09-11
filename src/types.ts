@@ -1,38 +1,41 @@
-import type { Image } from 'bun';
+import type { Image } from "bun";
 
-import type { ENCODERS } from './constants';
+import type { ENCODERS } from "./constants";
 
-export type ImageFormat = 'webp' | 'jpeg' | 'png' | 'heic' | 'avif';
-
-export interface EncodeOptions {
-  quality: number;
-  lossless: boolean;
-  progressive: boolean;
+export interface AppConvertOptions extends EncodeOptions {
+  format: ImageFormat;
+  name: string;
+  outputDir?: string;
+  parentPath: string;
+  sourceDir: string;
 }
 
 export interface ConvertOptions extends EncodeOptions {
-  path: string;
   format: ImageFormat;
+  path: string;
 }
 
-export interface ExecuteOptions extends EncodeOptions {
-  sourceDir: string;
-  outputDir?: string;
-  format: ImageFormat;
-  recursive: boolean;
+export interface EncodeOptions {
+  lossless: boolean;
+  progressive: boolean;
+  quality: number;
 }
-export interface AppConvertOptions extends EncodeOptions {
-  sourceDir: string;
-  outputDir?: string;
+
+export type Encoders = typeof ENCODERS;
+export interface ExecuteOptions extends EncodeOptions {
   format: ImageFormat;
-  name: string;
-  parentPath: string;
+  outputDir?: string;
+  recursive: boolean;
+  sourceDir: string;
 }
 
 export interface ImageEncoder {
   encode(image: Image, options: EncodeOptions): Image;
 }
 
-export type Encoders = typeof ENCODERS;
+export type ImageFormat = "avif" | "heic" | "jpeg" | "png" | "webp";
 
-export type OnConvertedCallback = (params: { destination: string; bytes: number }) => void;
+export type OnConvertedCallback = (params: {
+  bytes: number;
+  destination: string;
+}) => void;
