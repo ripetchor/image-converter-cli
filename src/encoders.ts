@@ -1,4 +1,5 @@
 import type { Image } from 'bun';
+
 import type { EncodeOptions, ImageEncoder } from './types';
 
 export class WebpEncoder implements ImageEncoder {

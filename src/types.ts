@@ -1,4 +1,5 @@
 import type { Image } from 'bun';
+
 import type { ENCODERS } from './constants';
 
 export type ImageFormat = 'webp' | 'jpeg' | 'png' | 'heic' | 'avif';

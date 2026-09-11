@@ -1,5 +1,6 @@
 import { argv } from 'bun';
 import { parseArgs, type ParseArgsOptionsConfig } from 'node:util';
+
 import { assertImageFormat } from './helpers';
 import type { ExecuteOptions } from './types';
 

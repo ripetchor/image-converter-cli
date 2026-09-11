@@ -1,6 +1,7 @@
 import type { Dirent } from 'node:fs';
 import { readdir } from 'node:fs/promises';
 import { resolve } from 'node:path';
+
 import { isImage, resolveImageDestination } from './helpers';
 import type { ImageConverter } from './image-converter';
 import type { AppConvertOptions, ExecuteOptions, OnConvertedCallback } from './types';

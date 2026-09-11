@@ -1,5 +1,6 @@
 import type { Dirent } from 'node:fs';
 import { basename, extname, relative, resolve } from 'node:path';
+
 import { IMAGE_FORMATS } from './constants';
 import type { ImageFormat } from './types';
 
