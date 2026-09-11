@@ -15,7 +15,7 @@ export class App {
 
   public async execute(
     getOptions: () => ExecuteOptions,
-    onConverted?: OnConvertedCallback,
+    onConverted?: OnConvertedCallback
   ): Promise<void> {
     const options = getOptions();
 
@@ -29,24 +29,18 @@ export class App {
     await Promise.all(
       images.map((dirent) => {
         return this.convert(this.createConvertOptions(dirent, options), onConverted);
-      }),
+      })
     );
   }
 
   private async convert(
     options: AppConvertOptions,
-    onConverted?: OnConvertedCallback,
+    onConverted?: OnConvertedCallback
   ): Promise<void> {
     const { sourceDir, outputDir, parentPath, name, format, quality, lossless, progressive } =
       options;
 
-    const destination = resolveImageDestination({
-      sourceDir,
-      outputDir,
-      parentPath,
-      name,
-      format,
-    });
+    const destination = resolveImageDestination({ sourceDir, outputDir, parentPath, name, format });
 
     const converted = this.converter.convert({
       path: resolve(parentPath, name),

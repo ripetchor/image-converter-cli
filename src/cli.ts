@@ -5,33 +5,13 @@ import { assertImageFormat } from './helpers';
 import type { ExecuteOptions } from './types';
 
 const options: ParseArgsOptionsConfig = {
-  sourceDir: {
-    type: 'string',
-  },
-  outputDir: {
-    type: 'string',
-    default: '',
-  },
-  format: {
-    type: 'string',
-    default: 'webp',
-  },
-  quality: {
-    type: 'string',
-    default: '80',
-  },
-  lossless: {
-    type: 'boolean',
-    default: false,
-  },
-  progressive: {
-    type: 'boolean',
-    default: false,
-  },
-  recursive: {
-    type: 'boolean',
-    default: false,
-  },
+  sourceDir: { type: 'string' },
+  outputDir: { type: 'string', default: '' },
+  format: { type: 'string', default: 'webp' },
+  quality: { type: 'string', default: '80' },
+  lossless: { type: 'boolean', default: false },
+  progressive: { type: 'boolean', default: false },
+  recursive: { type: 'boolean', default: false },
 };
 
 export function parseCliOptions(): ExecuteOptions {
