@@ -19,6 +19,12 @@ export function assertImageFormat(value: unknown): asserts value is ImageFormat 
   }
 }
 
+export function assertSourceDir(value: unknown): asserts value is string {
+  if (!value || typeof value !== 'string') {
+    throw new Error('--sourceDir is required');
+  }
+}
+
 export function isImage(dirent: Dirent): boolean {
   return dirent.isFile() && IMAGE_FORMATS.has(extname(dirent.name));
 }
